@@ -1,6 +1,6 @@
 {
     "name": "ROS2 Humble Development",
-    "image": "ubuntu:22.04",
+    "image": "althack/ros2:humble-gazebo-2022-12",
     "features": {
         "ghcr.io/devcontainers/features/common-utils:2": {
             "installZsh": "true",
@@ -8,21 +8,16 @@
             "upgradePackages": "true"
         }
     },
-    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y software-properties-common && sudo add-apt-repository universe && sudo apt-get update && sudo apt-get install -y curl gnupg lsb-release && sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg && echo 'deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main' | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null && sudo apt-get update && sudo apt-get install -y ros-humble-desktop gazebo libgazebo-dev",
+    "runArgs": ["--privileged"],
+    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y ros-humble-turtlebot3 ros-humble-turtlebot3-msgs ros-humble-dynamixel-sdk",
     "remoteUser": "vscode",
     "settings": {
         "terminal.integrated.profiles.linux": {
             "bash": {
-                "path": "bash",
-                "icon": "terminal-bash"
+                "path": "bash"
             }
-        },
-        "terminal.integrated.defaultProfile.linux": "bash"
+        }
     },
-    "runArgs": ["--privileged"],
-    "mounts": [
-        "source=/dev,target=/dev,type=bind"
-    ],
     "containerEnv": {
         "DISPLAY": ":1",
         "ROS_DISTRO": "humble"
