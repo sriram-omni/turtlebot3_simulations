@@ -8,12 +8,8 @@
             "upgradePackages": "true"
         }
     },
-    "runArgs": [
-        "--privileged",
-        "--net=host",
-        "-e", "DISPLAY=${env:DISPLAY}"
-    ],
-    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y ros-humble-gazebo-* ros-humble-turtlebot3 ros-humble-turtlebot3-msgs ros-humble-dynamixel-sdk libasound2 libasound2-plugins alsa-utils",
+    "runArgs": ["--privileged"],
+    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y ros-humble-gazebo-* ros-humble-turtlebot3 ros-humble-turtlebot3-msgs ros-humble-dynamixel-sdk",
     "remoteUser": "vscode",
     "settings": {
         "terminal.integrated.profiles.linux": {
@@ -22,6 +18,9 @@
             }
         }
     },
+    "mounts": [
+        "source=/dev,target=/dev,type=bind"
+    ],
     "containerEnv": {
         "DISPLAY": ":1",
         "ROS_DISTRO": "humble",
