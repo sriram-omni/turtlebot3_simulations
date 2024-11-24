@@ -1,6 +1,6 @@
 {
     "name": "ROS2 Humble Development",
-    "image": "althack/ros2:humble-gazebo-2022-12",
+    "image": "osrf/ros:humble-desktop",
     "features": {
         "ghcr.io/devcontainers/features/common-utils:2": {
             "installZsh": "true",
@@ -9,7 +9,7 @@
         }
     },
     "runArgs": ["--privileged"],
-    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y ros-humble-turtlebot3 ros-humble-turtlebot3-msgs ros-humble-dynamixel-sdk",
+    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y ros-humble-gazebo-* ros-humble-turtlebot3 ros-humble-turtlebot3-msgs ros-humble-dynamixel-sdk",
     "remoteUser": "vscode",
     "settings": {
         "terminal.integrated.profiles.linux": {
